@@ -1,0 +1,37 @@
+﻿<UserControl  x:Class="Caliburn.Micro.Tutorial.Wpf.Views.CategoryView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Caliburn.Micro.Tutorial.Wpf.Views"
+      xmlns:cal="http://www.caliburnproject.org"
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Button Content="Select" Width="50">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ImageClicked" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+            
+            <DataGrid ItemsSource="{Binding CategoryList, NotifyOnSourceUpdated=True}" 
+                             SelectedItem="{Binding SelectedCategory}"
+                             AutoGenerateColumns="False" Height="200" Margin="10"
+                      Visibility="{Binding VisibilityList,NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Width="386" Binding="{Binding CategoryName}"/>
+                    <DataGridTextColumn Header="Count" Width="386" Binding="{Binding CountValue}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <WrapPanel>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
